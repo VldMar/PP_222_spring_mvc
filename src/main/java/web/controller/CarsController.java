@@ -15,13 +15,11 @@ public class CarsController {
 
     @Autowired
     private CarService carService;
+
     @GetMapping("/cars")
-    public String showAll(@RequestParam(required = false, defaultValue = "5") Integer count, ModelMap model) {
-        int carsCount = (count < 0) || (count > 5) ? 5 : count;
-
-        List<Car> cars = carService.getCars(carsCount);
+    public String showAllCars(@RequestParam(required = false, defaultValue = "5") Integer count, ModelMap model) {
+        List<Car> cars = carService.getCars(count);
         model.addAttribute("cars", cars);
-
         return "cars";
     }
 }
